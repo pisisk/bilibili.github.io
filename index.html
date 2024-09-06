@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟B站首页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .top-bar {
+            background-color: #00a1d6;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+        .nav {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 15px;
+        }
+        .nav a:hover {
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+        .advertisement {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            height: 100px;
+            background-color: #e7e7e7;
+            font-size: 20px;
+            text-align: center;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        .main-banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            height: 300px;
+            background-color: #e7e7e7;
+        }
+        .video-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .video-card {
+            background-color: #ffffff;
+            margin: 10px;
+            padding: 10px;
+            width: 220px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .video-card img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .video-title {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #333;
+        }
+        .video-info {
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <h1>模拟B站首页</h1>
+    </div>
+
+    <div class="nav">
+        <a href="#" onclick="navigate('首页')">首页</a>
+        <a href="#" onclick="navigate('动画')">动画</a>
+        <a href="#" onclick="navigate('番剧')">番剧</a>
+        <a href="#" onclick="navigate('国创')">国创</a>
+        <a href="#" onclick="navigate('音乐')">音乐</a>
+        <a href="#" onclick="navigate('舞蹈')">舞蹈</a>
+        <a href="#" onclick="navigate('游戏')">游戏</a>
+        <a href="#" onclick="navigate('科技')">科技</a>
+        <a href="#" onclick="navigate('娱乐')">娱乐</a>
+    </div>
+    
+    <div class="main-banner" onclick="showAd()">
+        <h2>大横幅广告 (点击任何地方查看广告)</h2>
+    </div>
+    
+    <div class="advertisement" id="advertisement"></div>
+
+    <div class="video-section">
+        <div class="video-card" onclick="playVideo('视频标题1')">
+            <img src="https://via.placeholder.com/220x125" alt="Video Thumbnail">
+            <div class="video-title">视频标题1</div>
+            <div class="video-info">1万观看 · 500收藏</div>
+        </div>
+        <div class="video-card" onclick="playVideo('视频标题2')">
+            <img src="https://via.placeholder.com/220x125" alt="Video Thumbnail">
+            <div class="video-title">视频标题2</div>
+            <div class="video-info">3万观看 · 800收藏</div>
+        </div>
+        <div class="video-card" onclick="playVideo('视频标题3')">
+            <img src="https://via.placeholder.com/220x125" alt="Video Thumbnail">
+            <div class="video-title">视频标题3</div>
+            <div class="video-info">5万观看 · 1000收藏</div>
+        </div>
+        <div class="video-card" onclick="playVideo('视频标题4')">
+            <img src="https://via.placeholder.com/220x125" alt="Video Thumbnail">
+            <div class="video-title">视频标题4</div>
+            <div class="video-info">2万观看 · 600收藏</div>
+        </div>
+        <div class="video-card" onclick="playVideo('视频标题5')">
+            <img src="https://via.placeholder.com/220x125" alt="Video Thumbnail">
+            <div class="video-title">视频标题5</div>
+            <div class="video-info">4万观看 · 900收藏</div>
+        </div>
+        <div class="video-card" onclick="playVideo('视频标题6')">
+            <img src="https://via.placeholder.com/220x125" alt="Video Thumbnail">
+            <div class="video-title">视频标题6</div>
+            <div class="video-info">6万观看 · 1200收藏</div>
+        </div>
+        <div class="video-card" onclick="playVideo('视频标题7')">
+            <img src="https://via.placeholder.com/220x125" alt="Video Thumbnail">
+            <div class="video-title">视频标题7</div>
+            <div class="video-info">7万观看 · 1500收藏</div>
+        </div>
+        <div class="video-card" onclick="playVideo('视频标题8')">
+            <img src="https://via.placeholder.com/220x125" alt="Video Thumbnail">
+            <div class="video-title">视频标题8</div>
+            <div class="video-info">8万观看 · 1800收藏</div>
+        </div>
+    </div>
+
+    <script>
+        const ads = [
+            "广告一：购买XX产品，享受折扣！",
+            "广告二：体验全新服务，立即注册！",
+            "广告三：参加我们的活动，赢取大奖！",
+            "广告四：加入会员，享受更多福利！",
+            "广告五：看我们的新视频，了解更多信息！"
+        ];
+
+        function navigate(page) {
+            alert('导航到: ' + page);
+        }
+
+        function playVideo(title) {
+            alert('播放视频: ' + title);
+        }
+
+        function showAd() {
+            const randomIndex = Math.floor(Math.random() * ads.length);
+            const adMessage = ads[randomIndex];
+            document.getElementById('advertisement').innerText = adMessage;
+        }
+    </script>
+</body>
+</html>
+
+
